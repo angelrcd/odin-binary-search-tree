@@ -18,8 +18,51 @@ class Tree {
   constructor(arr){
     arr = [...new Set(arr)]
     arr.sort((a, b) => a - b )
-    console.log(arr);
     this.root = buildTree(arr)
+  }
+
+  insert(value, node = this.root){
+    if(this.root == null){
+      return;
+    }
+
+    // Don't insert duplicate values
+    if(node.data === value){
+      return;
+    }
+
+    if(node.data > value && !node.left){
+      node.setLeft(new Node(value));
+      return;
+    } else if (node.data < value && !node.right){
+      node.setRigth(new Node(value))
+      return;
+    }
+
+    (node.data > value) ? this.insert(value, node.left) : this.insert(value, node.right);
+  }
+
+  delete(value, node = this.root){
+    if (!node){
+      return null;
+    }
+    
+    // Case 1: Node to delete is a leaf node
+    if (node.data === value && !node.left && !node.right){
+      return null;
+    }
+    // Case 2: Node to delete has one child
+    if (node.data === value && (!node.left && node.right)){
+      return node.right;
+    } else if (node.data === value && (node.left && !node.right)){
+      return node.left;
+    }
+    // Case 3: Node with two children
+    
+
+    node.setLeft(this.delete(value, node.left));
+    node.setRigth(this.delete(value, node.right));
+    return node;
   }
 }
 
@@ -36,8 +79,14 @@ function buildTree(arr){
 }
 
 const tree = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
+const tree2 = new Tree([0, 1, 2, 3, 4, 5, 6])
+tree2.insert(10)
+tree2.insert(11)
+tree2.insert(12)
 
-const prettyPrint = (node, prefix = "", isLeft = true) => {
+prettyPrint(tree2.root);
+
+function prettyPrint(node, prefix = "", isLeft = true) {
   if (node === null) {
     return;
   }
@@ -49,5 +98,3 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
     prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
   }
 };
-
-prettyPrint(tree.root);
