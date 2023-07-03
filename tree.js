@@ -58,11 +58,27 @@ class Tree {
       return node.left;
     }
     // Case 3: Node with two children
-    
+    // TODO
 
     node.setLeft(this.delete(value, node.left));
     node.setRigth(this.delete(value, node.right));
     return node;
+  }
+
+  find(value){
+    let current = this.root;
+    
+    do {
+      if (current.data === value) return current;
+
+      if(value < current.data){
+        current = current.left;
+      } else {
+        current = current.right;
+      }
+    } while (current?.data != null)
+
+    return null;
   }
 }
 
@@ -85,6 +101,8 @@ tree2.insert(11)
 tree2.insert(12)
 
 prettyPrint(tree2.root);
+const found = tree2.find(0)
+console.log(found);
 
 function prettyPrint(node, prefix = "", isLeft = true) {
   if (node === null) {
