@@ -103,6 +103,57 @@ class Tree {
 
     return result;
   }
+
+  inorder(callback){
+    const result = [];
+    if (!callback){
+      callback = (node) => {
+        result.push(node.data)
+      }
+    }
+    function traversal(node){
+      if (node === null) return;
+      traversal(node.left);
+      callback(node);
+      traversal(node.right);
+    }
+    traversal(this.root)
+    return result;
+  }
+
+  preorder(callback){
+    const result = [];
+    if (!callback){
+      callback = (node) => {
+        result.push(node.data)
+      }
+    }
+    function traversal(node){
+      if (node === null) return;
+      callback(node);
+      traversal(node.left);
+      traversal(node.right);
+    }
+    traversal(this.root)
+    return result;
+  }
+
+  postorder(callback){
+    const result = [];
+    if (!callback){
+      callback = (node) => {
+        result.push(node.data)
+      }
+    }
+    function traversal(node){
+      if (node === null) return;
+      traversal(node.left);
+      traversal(node.right);
+      callback(node);
+    }
+    traversal(this.root)
+    return result;
+  }
 }
 
 function buildTree(arr){
@@ -124,7 +175,7 @@ tree2.insert(11)
 tree2.insert(12)
 
 prettyPrint(tree.root);
-console.log(tree.levelOrder());
+(tree.postorder((node)=> console.log(node.data)));
 
 
 
