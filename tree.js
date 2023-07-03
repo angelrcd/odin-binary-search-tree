@@ -80,6 +80,29 @@ class Tree {
 
     return null;
   }
+
+  levelOrder(callback){
+    const queu = [this.root];
+    const result = [];
+    if (!callback){
+      callback = (node) => {
+        result.push(node.data)
+      }
+    }
+
+    while(queu.length != 0){
+      const current = queu.shift();
+      callback(current);
+      if(current.left){
+        queu.push(current.left);
+      }
+       if (current.right){
+        queu.push(current.right);
+      }
+    }
+
+    return result;
+  }
 }
 
 function buildTree(arr){
@@ -100,9 +123,10 @@ tree2.insert(10)
 tree2.insert(11)
 tree2.insert(12)
 
-prettyPrint(tree2.root);
-const found = tree2.find(0)
-console.log(found);
+prettyPrint(tree.root);
+console.log(tree.levelOrder());
+
+
 
 function prettyPrint(node, prefix = "", isLeft = true) {
   if (node === null) {
