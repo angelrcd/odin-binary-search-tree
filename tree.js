@@ -154,6 +154,34 @@ class Tree {
     traversal(this.root)
     return result;
   }
+
+  height(node = this.root){
+    if (node === null) return -1;
+
+    let lHeight = this.height(node.left);
+    let rHeight = this.height(node.right);
+
+    if (lHeight < rHeight){
+      return rHeight + 1;
+    } else {
+      return lHeight + 1;
+    }
+  }
+
+  depth(node){
+    let depth = 0;
+    let current = this.root;
+    while(current !== node){
+      if(node.data < current.data){
+        current = current.left;
+        depth++;
+      } else if (node.data > current.data){
+        current = current.right;
+        depth++;
+      }
+    }
+    return depth;
+  }
 }
 
 function buildTree(arr){
@@ -173,9 +201,10 @@ const tree2 = new Tree([0, 1, 2, 3, 4, 5, 6])
 tree2.insert(10)
 tree2.insert(11)
 tree2.insert(12)
+tree.insert(6)
 
 prettyPrint(tree.root);
-(tree.postorder((node)=> console.log(node.data)));
+console.log(tree.depth(tree.root.left.left.right));
 
 
 
