@@ -171,6 +171,8 @@ export class Tree {
   }
 
   depth(node){
+    if(node === null) return -1;
+    
     let depth = 0;
     let current = this.root;
     while(current !== node){

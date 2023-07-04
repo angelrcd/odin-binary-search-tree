@@ -90,6 +90,10 @@ fieldset {
   white-space: pre-wrap;
 }
 
+#output span {
+  white-space: pre-wrap;
+}
+
 #information p {
   margin-bottom: 3px;
 }

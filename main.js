@@ -4,7 +4,10 @@ let tree = new Tree([ 1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67]);
 const outputDisplay = document.querySelector("#output");
 const inputBox = document.querySelector("#input-box");
 const insertButton = document.querySelector("#insert-btn");
+const removeButton = document.querySelector("#remove-btn");
+const depthInput = document.querySelector("#depth")
 const rebalanceButton = document.querySelector("#rebalance-btn");
+
 // selectors for information section
 const heightDisplay = document.querySelector("#height");
 const balancedDisplay = document.querySelector("#balanced");
@@ -29,6 +32,34 @@ insertButton.addEventListener("click", () => {
   updateDisplay();
 })
 
+removeButton.addEventListener("click", () => {
+  const removeInputBox = document.querySelector("#remove");
+  const valueToRemove = removeInputBox.value;
+  removeInputBox.value = "";
+
+  if (valueToRemove === "") return;
+
+  tree.delete(+valueToRemove);
+  updateDisplay();  
+})
+
+depthInput.addEventListener("input", (e) => {
+  const depthOutput = document.querySelector("#depth-result");
+  const value = depthInput.value;
+  if (value === "") {
+    depthOutput.textContent = "";
+    return;
+  }
+
+  const depth = tree.depth(tree.find(+value));
+  if (depth < 0){
+    depthOutput.textContent = "No node with this value";
+    return;
+  }
+
+  depthOutput.textContent = `Depth: ${depth}`;
+})
+
 rebalanceButton.addEventListener("click", () => {
   tree.rebalance();
   updateDisplay();
@@ -37,6 +68,7 @@ rebalanceButton.addEventListener("click", () => {
 function updateDisplay(){
   updateOutput(); 
   updateInformation();
+  clearDepth();
 }
 
 function updateOutput(){
@@ -60,4 +92,9 @@ function handleNewInput(){
   
   tree = new Tree(numbersArr);
   updateDisplay();
+}
+
+function clearDepth(){
+  depthInput.value = "";
+  document.querySelector("#depth-result").textContent = "";
 }
