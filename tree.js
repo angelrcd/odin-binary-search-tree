@@ -14,7 +14,7 @@ class Node {
   }
 } 
 
-class Tree {
+export class Tree {
   constructor(arr){
     arr = [...new Set(arr)]
     arr.sort((a, b) => a - b )
@@ -203,20 +203,28 @@ tree2.insert(11)
 tree2.insert(12)
 tree.insert(6)
 
-prettyPrint(tree.root);
-console.log(tree.depth(tree.root.left.left.right));
+const print = prettyPrint(tree.root);
+console.log(print);
+console.log(tree.depth(tree.find(6345)));
 
 
 
-function prettyPrint(node, prefix = "", isLeft = true) {
+export function prettyPrint(node, prefix = "", isLeft = true) {
+  let result = "";
+
   if (node === null) {
-    return;
+    return result;
   }
+
   if (node.right !== null) {
-    prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
+    result += prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
   }
-  console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
+
+  result += `${prefix}${isLeft ? "└── " : "┌── "}${node.data}\n`;
+
   if (node.left !== null) {
-    prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
+    result += prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
   }
-};
+
+  return result;
+}

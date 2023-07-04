@@ -1,0 +1,113 @@
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+input, button, textarea, select {
+  font: inherit;
+}
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+#root, #__next {
+  isolation: isolate;
+}
+
+html, body {
+  background-color: #112020;
+  color: #ddd;
+}
+
+body {
+  margin: 1rem;
+}
+
+.hidden {
+  display: none;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1,
+header a {
+  font-size: 1rem;
+}
+
+header a:visited,
+header a:link {
+  color: #ddd;
+}
+
+#App {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: fit-content(30%) auto;
+  grid-template-rows: auto 11 rem;
+}
+
+#App section fieldset,
+#App section form {
+  height: 100%;
+}
+
+#App section:nth-child(1) {
+  grid-row: 1 / 3;
+}
+
+fieldset {
+  background-color: #0B1515;
+}
+
+#input-section fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#output {
+  line-break: ;
+  font-family: monospace;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.3rem;
+  white-space: pre-wrap;
+}
+
+#information p {
+  margin-bottom: 3px;
+}
+
+#information span.info-type {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+/* #level-order,
+#preorder,
+#inorder,
+#postorder {
+  line-break: anywhere;
+} */
+
+@media (width <= 500px) {
+  #App {
+    grid-template-columns: auto;
+  }
+}

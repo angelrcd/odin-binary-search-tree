@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binary Search Tree</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="main.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Binary Search Tree by angelrcd</h1>  
+    <a href="https://github.com/angelrcd/odin-binary-search-tree">GitHub Repository</a>
+  </header>
+  <div id="App">
+    <section id="input-section">
+      <form autocomplete="off">
+        <fieldset>
+          <legend>Input</legend>
+          <div>
+            <label for="input-box">Enter numbers separated by spaces</label>
+            <div>
+              <input type="text" id="input-box" placeholder="1 7 4 23 8 9 4 3 5 7 9 67">
+            </div>
+          </div>
+          <div>
+            <label for="insert">Insert numbers (duplicates are ignored)</label>
+            <div>
+              <input type="number" id="insert">
+              <button type="button" id="insert-btn">Insert</button>
+            </div>
+          </div>
+          <div>
+            <label for="remove">Remove number</label>
+            <div>
+              <input type="number" id="remove">
+              <button type="button" id="remove-btn">Remove</button>
+            </div>
+          </div>
+          <div>
+            <label for="depth">Find and view depth of a value</label>
+            <div>
+              <input type="number" id="depth">
+              <p id="find-result"></p>
+            </div>
+          </div>
+          <div>
+          <div>
+            <p>Rebalance tree</p>
+            <button type="button" id="rebalance-btn">Rebalance</button>
+          </div>
+        </fieldset>
+      </form>
+    </section>
+    <section>
+      <fieldset>
+        <legend>Output</legend>
+        <p id="output"></p>
+      </fieldset>
+    </section>
+    <section id="information">
+      <fieldset>
+        <legend>Information</legend>
+        <p><span class="info-type">Height</span>: <span id="height"></span></p>
+        <p><span class="info-type">Balanced</span>: <span id="balanced"></span></p>
+        <p><span class="info-type">Level Order</span>: <span id="level-order"></span></p>
+        <p><span class="info-type">Preorder</span>: <span id="preorder"></span></p>
+        <p><span class="info-type">Inorder</span>: <span id="inorder"></span></p>
+        <p><span class="info-type">Postorder</span>: <span id="postorder"></span></p>
+      </fieldset>
+    </section>
+  </div>
+</body>
+</html>
