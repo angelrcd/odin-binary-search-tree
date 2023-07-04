@@ -3,6 +3,8 @@ import { Tree, prettyPrint } from "./tree.js"
 let tree = new Tree([ 1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67]);
 const outputDisplay = document.querySelector("#output");
 const inputBox = document.querySelector("#input-box");
+const insertButton = document.querySelector("#insert-btn");
+const rebalanceButton = document.querySelector("#rebalance-btn");
 // selectors for information section
 const heightDisplay = document.querySelector("#height");
 const balancedDisplay = document.querySelector("#balanced");
@@ -12,9 +14,25 @@ const inorderDisplay = document.querySelector("#inorder");
 const postorderDisplay = document.querySelector("#postorder");
 
 
-updateDisplay()
+updateDisplay();
 
-inputBox.addEventListener("input", handleNewInput)
+inputBox.addEventListener("input", handleNewInput);
+
+insertButton.addEventListener("click", () => {
+  const insertInputBox = document.querySelector("#insert");
+  const newValue = insertInputBox.value;
+  insertInputBox.value = "";
+
+  if (newValue === "") return;
+
+  tree.insert(+newValue);
+  updateDisplay();
+})
+
+rebalanceButton.addEventListener("click", () => {
+  tree.rebalance();
+  updateDisplay();
+})
 
 function updateDisplay(){
   updateOutput(); 
@@ -28,7 +46,7 @@ function updateOutput(){
 
 function updateInformation(){
   heightDisplay.textContent = tree.height();
-  // balanced to do
+  balancedDisplay.textContent = tree.isBalanced();
   levelOrderDisplay.textContent = tree.levelOrder().join(", ");
   preorderDisplay.textContent = tree.preorder().join(", ");
   inorderDisplay.textContent = tree.inorder().join(", ");
