@@ -58,7 +58,16 @@ export class Tree {
       return node.left;
     }
     // Case 3: Node with two children
-    // TODO
+    if (node.data === value && node.left && node.right){
+      // Find inorder successor
+      let succ = node.right;
+      while (succ.left != null){
+        succ = succ.left;
+      }
+      const succData = succ.data;
+      this.delete(succData);
+      node.data = succData;
+    }
 
     node.setLeft(this.delete(value, node.left));
     node.setRigth(this.delete(value, node.right));
