@@ -7,6 +7,7 @@ const insertButton = document.querySelector("#insert-btn");
 const removeButton = document.querySelector("#remove-btn");
 const depthInput = document.querySelector("#depth")
 const rebalanceButton = document.querySelector("#rebalance-btn");
+const randomButton = document.querySelector("#random-btn");
 
 // selectors for information section
 const heightDisplay = document.querySelector("#height");
@@ -29,6 +30,13 @@ insertButton.addEventListener("click", () => {
   if (newValue === "") return;
 
   tree.insert(+newValue);
+  updateDisplay();
+})
+
+randomButton.addEventListener("click", () => {
+  const newValues = generate100RandomValues();
+  inputBox.value = "";
+  tree = new Tree(newValues);
   updateDisplay();
 })
 
@@ -97,4 +105,17 @@ function handleNewInput(){
 function clearDepth(){
   depthInput.value = "";
   document.querySelector("#depth-result").textContent = "";
+}
+
+function generate100RandomValues(){
+  const numbers = [];
+  
+  while (numbers.length < 100) {
+    const randomNumber = Math.floor(Math.random() * 501); // Generates a random number from 0 to 500
+    if (!numbers.includes(randomNumber)) {
+      numbers.push(randomNumber);
+    }
+  }
+  
+  return numbers;
 }
