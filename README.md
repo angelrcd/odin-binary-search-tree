@@ -3,11 +3,11 @@ Binary Search Tree implemented with JavaScript
 ![Screenshot of the visualizer](./readme-assets/Screenshot.png)
 
 ## Links
-- [Linked List Visualizer](https://angelrcd.github.io/odin-binary-search-tree/)
+- [Binary Search Tree Visualizer](https://angelrcd.github.io/odin-binary-search-tree/)
 - [Link to assignment](https://www.theodinproject.com/lessons/javascript-binary-search-trees)
 
 ## Summary
-All of the Linked list related logic can be found in my `tree.js` file. This project contains two classes: `Node` and `Tree`
+All of the BST related logic can be found in my `tree.js` file. This project contains two classes: `Node` and `Tree`
 
 ### Features
 - `insert(value)` Inserts a new node with given value in the tree, duplicates are ignored
